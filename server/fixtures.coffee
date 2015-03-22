@@ -10,8 +10,6 @@ PackageFixture = ->
   #   Fixtures.loadData RealTimeCore.Collections.Shipping, jsonFile
   #
   loadData: (collection, jsonFile) ->
-    console.log("PackageFixture->loadData init :" + collection)
-    console.log("PackageFixture->loadData init " + jsonFile)
     #check collection, RealTimeCore.Schemas[collection._name]
     check jsonFile, Match.Optional(String)
     if collection.find().count() > 0 then return
@@ -146,11 +144,10 @@ createDefaultAdminUser = ->
 ###
 loadFixtures = ->
   # Load data from json files
-  console.log("RealTimeCore.Collections.Products " + RealTimeCore.Collections.Products)
   Fixtures.loadData RealTimeCore.Collections.Products
   Fixtures.loadData RealTimeCore.Collections.Shops
-  # Fixtures.loadData RealTimeCore.Collections.Tags
-  # Fixtures.loadI18n RealTimeCore.Collections.Translations
+  Fixtures.loadData RealTimeCore.Collections.Tags
+  Fixtures.loadI18n RealTimeCore.Collections.Translations
 
   # Load data from settings/json files
   unless Accounts.loginServiceConfiguration.find().count()
@@ -189,9 +186,7 @@ loadFixtures = ->
 # Execute start up fixtures
 ###
 Meteor.startup ->
-  console.log("Probando el inicio de mi test")
   loadFixtures()
-  console.log("Probando el inicio de mi test 2")
   # data conversion:  if ROOT_URL changes update shop domain
   # for now, we're assuming the first domain is the primary
   # currentDomain = Shops.findOne().domains[0]

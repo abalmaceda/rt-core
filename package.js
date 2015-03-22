@@ -1,6 +1,6 @@
 Package.describe({
   name: 'rt-core',
-  version: '0.0.1',
+  version: '0.0.2',
   // Brief, one-line summary of the package.
   summary: '',
   // URL to the Git repository containing the source code for this package.
@@ -24,6 +24,7 @@ Package.onUse(function(api) {
      api.use("meteor-platform");
      api.use("accounts-base");
      api.use("accounts-password");
+
     // api.use("accounts-ui-unstyled");
     // api.use("less");
     // api.use("http");
@@ -80,7 +81,12 @@ Package.onUse(function(api) {
      */
      api.use("anti:fake@0.4.1");
     // api.use("matb33:collection-hooks@0.7.6");
-    // api.use("alanning:roles@1.2.13");
+
+    /*
+    * Authorization package for Meteor - compatible with built-in accounts package.
+    */
+     api.use("alanning:roles@1.2.13");
+
     // api.use("cmather:handlebars-server@2.0.0","server");
     // api.use("momentjs:moment@2.8.4", 'client');
     // api.use("sacha:spin@2.0.4", "client");
@@ -95,7 +101,7 @@ Package.onUse(function(api) {
     
     // api.use("meteorhacks:ssr@2.1.2");
 
-    /*  implying these are reused in reaction packages  */
+    /*  implying these are reused in realTime packages  */
 
     // api.imply("less");
     // api.imply("amplify");
@@ -114,7 +120,7 @@ Package.onUse(function(api) {
     // api.imply("cfs:s3");
     // api.imply("raix:ui-dropped-event");
     // api.imply("matb33:collection-hooks");
-    // api.imply("alanning:roles");
+     api.imply("alanning:roles");
     // api.imply("momentjs:moment", ["client"]);
     // api.imply("sacha:spin" ["client"]);
      api.imply("dburles:factory");
@@ -133,14 +139,14 @@ Package.onUse(function(api) {
      "common/helpers.coffee",
     // "common/routing.coffee",
     // "common/schemas/packages.coffee",
-    // "common/schemas/users.coffee",
+     "common/schemas/users.coffee",
      "common/schemas/shops.coffee",
     // "common/schemas/shipping.coffee",
      "common/schemas/products.coffee",
-    // "common/schemas/tags.coffee",
+     "common/schemas/tags.coffee",
     // "common/schemas/cart.coffee",
     // "common/schemas/orders.coffee",
-    // "common/schemas/translations.coffee",
+     "common/schemas/translations.coffee",
     // "common/schemas/taxes.coffee",
     // "common/schemas/discounts.coffee",
      "common/collections/collections.coffee",
@@ -417,9 +423,9 @@ Package.onUse(function(api) {
     */
      api.addFiles('private/data/Products.json', 'server', {isAsset: true});
      api.addFiles('private/data/Shops.json', 'server', {isAsset: true});
-    // api.addFiles('private/data/Tags.json', 'server', {isAsset: true});
+     api.addFiles('private/data/Tags.json', 'server', {isAsset: true});
     // api.addFiles('private/data/roles.json', 'server', {isAsset: true});
-    // api.addFiles('private/data/users.json', 'server', {isAsset: true});
+     api.addFiles('private/data/users.json', 'server', {isAsset: true});
     // api.addFiles('private/data/Orders.json', 'server', {isAsset: true});
     /*
     *   i18n translations
@@ -428,8 +434,8 @@ Package.onUse(function(api) {
     // api.addFiles('private/data/i18n/cn.json', 'server', {isAsset: true});
     // api.addFiles('private/data/i18n/cs.json', 'server', {isAsset: true});
     // api.addFiles('private/data/i18n/de.json', 'server', {isAsset: true});
-    // api.addFiles('private/data/i18n/en.json', 'server', {isAsset: true});
-    // api.addFiles('private/data/i18n/es.json', 'server', {isAsset: true});
+     api.addFiles('private/data/i18n/en.json', 'server', {isAsset: true});
+     api.addFiles('private/data/i18n/es.json', 'server', {isAsset: true});
     // api.addFiles('private/data/i18n/fr.json', 'server', {isAsset: true});
     // api.addFiles('private/data/i18n/hr.json', 'server', {isAsset: true});
     // api.addFiles('private/data/i18n/he.json', 'server', {isAsset: true});
@@ -449,7 +455,7 @@ Package.onUse(function(api) {
     // api.export(["ReactionCore"]);
     // api.export("ReactionRegistry","server");
 
-    // legacy Exports (TODO: move to ReactionCore)
+    // legacy Exports (TODO: move to RealTimeCore)
     api.export([
       // "Alerts",
       // "CartWorkflow",

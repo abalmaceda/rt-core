@@ -74,7 +74,6 @@ RealTimeCore.Collections.Taxes.attachSchema RealTimeCore.Schemas.Taxes
 
 # Discounts
 RealTimeCore.Collections.Discounts = new Mongo.Collection "Discounts"
-console.log("RealTimeCore.Collections.Discounts _name :" + RealTimeCore.Collections.Discounts._name)
 RealTimeCore.Collections.Discounts.attachSchema RealTimeCore.Schemas.Discounts
 
 # Shops

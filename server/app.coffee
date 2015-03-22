@@ -1,5 +1,5 @@
 ###
-# configure bunyan logging module for reaction server
+# configure bunyan logging module for realTime server
 # See: https://github.com/trentm/node-bunyan#levels
 ###
 isDebug = Meteor.settings.isDebug
@@ -19,7 +19,7 @@ if isDebug is true or ( process.env.NODE_ENV is "development" and isDebug isnt f
 
 # Define bunyan levels and output to Meteor console
 RealTimeCore.Events = logger.bunyan.createLogger(
-  name: "reactioncommerce:core"
+  name: "rtcommerce:core"
   serializers: logger.bunyan.stdSerializers
   streams: [
     {
@@ -36,14 +36,14 @@ RealTimeCore.Events = logger.bunyan.createLogger(
 RealTimeCore.Events.level(isDebug)
 
 ###
-# Global reaction shop permissions methods
+# Global realTime shop permissions methods
 ###
 _.extend RealTimeCore,
   getCurrentShopCursor: (client) ->
     domain = @getDomain(client)
     cursor = Shops.find({domains: domain}, {limit: 1})
     if !cursor.count()
-      RealTimeCore.Events.info "Reaction Configuration: Add a domain entry to shops for: ", domain
+      RealTimeCore.Events.info "RealTime Configuration: Add a domain entry to shops for: ", domain
     return cursor
 
   getCurrentShop: (client) ->
