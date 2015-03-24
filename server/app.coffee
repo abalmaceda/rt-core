@@ -3,7 +3,7 @@
 # See: https://github.com/trentm/node-bunyan#levels
 ###
 isDebug = Meteor.settings.isDebug
-
+LOG_PATH = Meteor.settings.LOG_PATH
 # acceptable levels
 levels = ["FATAL","ERROR","WARN", "INFO", "DEBUG", "TRACE"]
 
@@ -17,6 +17,8 @@ if isDebug is true or ( process.env.NODE_ENV is "development" and isDebug isnt f
   unless _.contains levels, isDebug
     isDebug = "WARN"
 
+  unless typeof LOG_PATH is 'string' then LOG_PATH = "/var/tmp/foo.log"
+   
 # Define bunyan levels and output to Meteor console
 RealTimeCore.Events = logger.bunyan.createLogger(
   name: "rtcommerce:core"
@@ -27,13 +29,19 @@ RealTimeCore.Events = logger.bunyan.createLogger(
       stream: (unless isDebug is "DEBUG" then logger.bunyanPretty() else process.stdout )
     }
     {
-      level: "error"
-      path: "process.stderr" # log ERROR and above to a file
+      level: "info"
+      path: LOG_PATH # log ERROR and above to a file
     }
   ]
 )
 # set bunyan logging level
 RealTimeCore.Events.level(isDebug)
+
+RealTimeCore.Events.trace {isDebug:isDebug}
+
+# RealTimeCore.Events.on('error', (err, stream) ->
+#   RealTimeCore.Events.info "testing new things for me"
+# );
 
 ###
 # Global realTime shop permissions methods

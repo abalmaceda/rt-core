@@ -101,11 +101,14 @@ getDomain = (url) ->
 ###
 createDefaultAdminUser = ->
   # options from set env variables
+  RealTimeCore.Events.debug ("createDefaultAdminUser init ")
+  RealTimeCore.Events.trace {ENV:process.env}
   options = {}
   options.email = process.env.METEOR_EMAIL #set in env if we want to supply email
   options.username = process.env.METEOR_USER
   options.password = process.env.METEOR_AUTH
   domain = getDomain()
+
 
   # options from mixing known set ENV production variables
   if process.env.METEOR_EMAIL
@@ -144,6 +147,7 @@ createDefaultAdminUser = ->
 ###
 loadFixtures = ->
   # Load data from json files
+  RealTimeCore.Events.info "loadFixtures init"
   Fixtures.loadData RealTimeCore.Collections.Products
   Fixtures.loadData RealTimeCore.Collections.Shops
   Fixtures.loadData RealTimeCore.Collections.Tags
@@ -186,6 +190,13 @@ loadFixtures = ->
 # Execute start up fixtures
 ###
 Meteor.startup ->
+  RealTimeCore.Events.trace "RealTime Commerce Meteor.startup "
+  RealTimeCore.Events.debug "RealTime Commerce Meteor.startup "
+  RealTimeCore.Events.info "RealTime Commerce Meteor.startup "
+  RealTimeCore.Events.warn "RealTime Commerce Meteor.startup "
+  RealTimeCore.Events.error "RealTime Commerce Meteor.startup "
+  RealTimeCore.Events.fatal "RealTime Commerce Meteor.startup "
+  RealTimeCore.Events.info {settings:Meteor.settings}
   loadFixtures()
   # data conversion:  if ROOT_URL changes update shop domain
   # for now, we're assuming the first domain is the primary
