@@ -61,6 +61,7 @@ PackageFixture = ->
           validate: false)
 
         RealTimeCore.Events.info "loaded local package data: " + item.name
+        RealTimeCore.Events.trace {item:item}, "PackageFixture -> loadSettings :"
       return
     return
 
@@ -101,12 +102,13 @@ getDomain = (url) ->
 ###
 createDefaultAdminUser = ->
   # options from set env variables
-  RealTimeCore.Events.debug ("createDefaultAdminUser init ")
-  RealTimeCore.Events.trace {ENV:process.env}
+  RealTimeCore.Events.debug "PackageFixture -> createDefaultAdminUser [INIT] "
+  RealTimeCore.Events.trace {ENV:process.env},"PackageFixture -> createDefaultAdminUser"
   options = {}
   options.email = process.env.METEOR_EMAIL #set in env if we want to supply email
   options.username = process.env.METEOR_USER
   options.password = process.env.METEOR_AUTH
+  RealTimeCore.Events.trace {options:options},"PackageFixture -> createDefaultAdminUser"
   domain = getDomain()
 
 
@@ -124,7 +126,9 @@ createDefaultAdminUser = ->
     RealTimeCore.Events.warn ("\nIMPORTANT! DEFAULT USER INFO (RANDOM)\n  EMAIL/LOGIN: " + options.email + "\n  PASSWORD: " + options.password + "\n")
 
   accountId = Accounts.createUser options
+  RealTimeCore.Events.debug "PackageFixture -> createDefaultAdminUser : Admin created"
   Roles.addUsersToRoles accountId, ['manage-users','owner','admin']
+
   shopId = Shops.findOne()._id
   Shops.update shopId,
     $set:
@@ -141,13 +145,15 @@ createDefaultAdminUser = ->
             "dashboard/settings/account",
             "dashboard/orders"
             ]
+  RealTimeCore.Events.debug "PackageFixture -> createDefaultAdminUser : Assigned an test-item to the Admin"
+  RealTimeCore.Events.debug "PackageFixture -> createDefaultAdminUser [END]"
 
 ###
 # load core fixture data
 ###
 loadFixtures = ->
   # Load data from json files
-  RealTimeCore.Events.info "loadFixtures init"
+  RealTimeCore.Events.debug "PackageFixture -> loadFixtures [INIT]"
   Fixtures.loadData RealTimeCore.Collections.Products
   Fixtures.loadData RealTimeCore.Collections.Shops
   Fixtures.loadData RealTimeCore.Collections.Tags
@@ -156,6 +162,7 @@ loadFixtures = ->
   # Load data from settings/json files
   unless Accounts.loginServiceConfiguration.find().count()
     if Meteor.settings.public?.facebook?.appId
+      RealTimeCore.Events.debug "Adding Facebook info"
       Accounts.loginServiceConfiguration.insert
         service: "facebook",
         appId: Meteor.settings.public.facebook.appId,
@@ -185,28 +192,28 @@ loadFixtures = ->
 
   # create default admin user account
   createDefaultAdminUser() unless Meteor.users.find().count()
+  RealTimeCore.Events.debug "PackageFixture -> loadFixtures [END]"
 
 ###
 # Execute start up fixtures
 ###
 Meteor.startup ->
-  RealTimeCore.Events.trace "RealTime Commerce Meteor.startup "
-  RealTimeCore.Events.debug "RealTime Commerce Meteor.startup "
-  RealTimeCore.Events.info "RealTime Commerce Meteor.startup "
-  RealTimeCore.Events.warn "RealTime Commerce Meteor.startup "
-  RealTimeCore.Events.error "RealTime Commerce Meteor.startup "
-  RealTimeCore.Events.fatal "RealTime Commerce Meteor.startup "
+  RealTimeCore.Events.debug "RealTime-Commerce Meteor.startup "
   RealTimeCore.Events.info {settings:Meteor.settings}
   loadFixtures()
   # data conversion:  if ROOT_URL changes update shop domain
   # for now, we're assuming the first domain is the primary
-  # currentDomain = Shops.findOne().domains[0]
+  currentDomain = Shops.findOne().domains[0]
+  RealTimeCore.Events.trace {domains:{currentDomain:currentDomain, getDomain:getDomain()}}, "Meteor.startup :"
+
   # if currentDomain isnt getDomain()
   #   RealTimeCore.Events.info "Updating domain to " + getDomain()
   #   Shops.update({domains:currentDomain},{$set:{"domains.$":getDomain()}})
+  #   RealTimeCore.Events.trace {currentDomain:currentDomain},"Meteor.startup: Shops updated domains"
 
   # # data conversion: we now set sessionId or userId, but not both
-  # Cart.update {userId: { $exists : true, $ne : null }, sessionId: { $exists : true }}, {$unset: {sessionId: ""}}, {multi: true}
+  #RealTimeCore.Events.debug "Meteor.startup : we now set sessionId or userId, but not both"
+  #Cart.update {userId: { $exists : true, $ne : null }, sessionId: { $exists : true }}, {$unset: {sessionId: ""}}, {multi: true}
 
   # notifiy that we're done with initialization
   RealTimeCore.Events.info "RealTime Commerce initialization finished. "

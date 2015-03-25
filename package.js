@@ -144,7 +144,7 @@ Package.onUse(function(api) {
     // "common/schemas/shipping.coffee",
      "common/schemas/products.coffee",
      "common/schemas/tags.coffee",
-    // "common/schemas/cart.coffee",
+     "common/schemas/cart.coffee",
     // "common/schemas/orders.coffee",
      "common/schemas/translations.coffee",
     // "common/schemas/taxes.coffee",
