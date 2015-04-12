@@ -59,7 +59,11 @@ Package.onUse(function(api) {
      */
     // api.use("aldeed:autoform@4.2.2");
     // api.use("aldeed:template-extension@3.1.1","client");
-    // api.use("iron:router@1.0.7");
+    
+    /*
+    * A router that works on the server and the browser, designed specifically for Meteor
+    */
+     api.use("iron:router@1.0.7");
     // api.use("prinzdezibel:accounts-guest@0.1.3");
     // api.use("ongoworks:speakingurl@1.0.5");
     // api.use("ongoworks:pdf@1.1.0");
@@ -113,7 +117,7 @@ Package.onUse(function(api) {
      api.imply("aldeed:simple-schema");
     // api.imply("aldeed:autoform");
     // api.imply("aldeed:template-extension");
-    // api.imply("iron:router");
+     api.imply("iron:router");
     // api.imply("cfs:graphicsmagick");
     // api.imply("cfs:filesystem");
     // api.imply("cfs:gridfs");
@@ -137,7 +141,7 @@ Package.onUse(function(api) {
      "common/packageGlobals.js",
     // "common/common.coffee",
      "common/helpers.coffee",
-    // "common/routing.coffee",
+     "common/routing.coffee",
     // "common/schemas/packages.coffee",
      "common/schemas/users.coffee",
      "common/schemas/shops.coffee",
@@ -198,10 +202,10 @@ Package.onUse(function(api) {
       // "client/workflows/cart/workflow.coffee",
       // "client/workflows/orders/workflow.coffee",
 
-      // "client/templates/layout/layout.html",
-      // "client/templates/layout/layout.coffee",
+       "client/templates/layout/layout.html",
+       "client/templates/layout/layout.coffee",
 
-      // "client/templates/layout/header/header.html",
+       "client/templates/layout/header/header.html",
       // "client/templates/layout/header/header.coffee",
 
       // "client/templates/layout/header/tags/tags.html",
@@ -212,14 +216,14 @@ Package.onUse(function(api) {
 
       // "client/templates/layout/header/brand/brand.html",
 
-      // "client/templates/layout/footer/footer.html",
+       "client/templates/layout/footer/footer.html",
 
       // "client/templates/layout/alerts/bootstrap-alerts.coffee",
       // "client/templates/layout/alerts/alerts.html",
       // "client/templates/layout/alerts/alerts.coffee",
 
-      // "client/templates/layout/loading/loading.html",
-      // "client/templates/layout/notFound/notFound.html",
+       "client/templates/layout/loading/loading.html",
+       "client/templates/layout/notFound/notFound.html",
 
       // "client/templates/layout/notice/unauthorized.html",
       // "client/templates/layout/notice/shopNotFound.html",
@@ -372,13 +376,13 @@ Package.onUse(function(api) {
       // "client/templates/dashboard/settings/settingsAccount/shopMember/memberForm/memberForm.html",
       // "client/templates/dashboard/settings/settingsAccount/shopMember/memberForm/memberForm.coffee",
 
-      // "client/templates/products/products.html",
+       "client/templates/products/products.html",
       // "client/templates/products/products.coffee",
 
       // "client/templates/products/productList/productList.html",
       // "client/templates/products/productList/productList.coffee",
 
-      // "client/templates/products/productGrid/productGrid.html",
+       "client/templates/products/productGrid/productGrid.html",
       // "client/templates/products/productGrid/productGrid.coffee",
 
       // "client/templates/products/productDetail/productDetail.html",
