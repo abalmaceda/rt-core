@@ -2,7 +2,7 @@
 
 ###
 #  Global Route Configuration
-#  Extend/override in reaction/client/routing.coffee
+#  Extend/override in realtime/client/routing.coffee
 ###
 Router.configure
   notFoundTemplate: "notFound"
@@ -14,31 +14,38 @@ Router.configure
     return
 
 
-# general reaction controller
+# general realtime controller
 @ShopController = RouteController.extend
   # onAfterAction: ->
-  #   ReactionCore.MetaData.refresh(@route, @params)
+  #   RealTimeCore.MetaData.refresh(@route, @params)
   #   return
   layoutTemplate: "coreLayout"
-  # yieldTemplates:
-  #   layoutHeader:
-  #     to: "layoutHeader"
-  #   layoutFooter:
-  #     to: "layoutFooter"
+  yieldTemplates:
+    layoutHeader:
+      to: "layoutHeader"
+    layoutFooter:
+      to: "layoutFooter"
     # dashboard:
     #   to: "dashboard"
 # local ShopController
 ShopController = @ShopController
+
+# we always need to wait on these publications
+# Router.waitOn ->
+#   @subscribe "shops"
+#   @subscribe "Packages"
 
 
 ###
 # General Route Declarations
 ###
 Router.map ->
-  # default index route, normally overriden parent meteor app
+# default index route, normally overriden parent meteor app
   @route "index",
     controller: ShopController
     path: "/"
     name: "index"
     template: "products"
+    waitOn: ->
+      @subscribe "products"
     

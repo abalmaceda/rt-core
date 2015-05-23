@@ -10,6 +10,20 @@ Package.describe({
   documentation: 'README.md'
 });
 
+Package.registerBuildPlugin({
+  name: 'theme-configurator',
+  use: [
+    'underscore',
+    'reactioncommerce:core-theme@1.3.1'
+  ],
+  sources: [
+    'server/buildtools/module-definitions.js',
+    'server/buildtools/distributed-configuration.js',
+    'server/buildtools/theme-configurator.js'
+  ],
+  npmDependencies: {}
+});
+
 Package.onUse(function(api) {
   //api.versionsFrom('1.0.3.2');
   //api.addFiles('rt-core.js');
@@ -25,12 +39,19 @@ Package.onUse(function(api) {
      api.use("accounts-base");
      api.use("accounts-password");
 
-    // api.use("accounts-ui-unstyled");
-    // api.use("less");
+     /*
+     *  A version of accounts-ui without the CSS, so that you can add your own styling. See the accounts-ui README and the Meteor Accounts project page for details.
+     */
+     api.use("accounts-ui-unstyled");
+    
+    /*
+    LESS extends CSS with dynamic behavior such as variables, mixins, operations and functions. It allows for more compact stylesheets and helps reduce code duplication in CSS files.
+    */
+     api.use("less");
     // api.use("http");
      api.use("coffeescript");
      api.use("underscore");
-    // api.use("blaze");
+     api.use("blaze");
      api.use("jquery");
     // api.use("email");
     // api.use("check");
@@ -38,8 +59,9 @@ Package.onUse(function(api) {
     // api.use("amplify@1.0.0");
 
     /*  community packages  */
-    // api.use("nemo64:bootstrap@3.3.1_1","client");
-    // api.use("nemo64:bootstrap@3.3.1_1","server", {'weak': 1});
+    //api.use("ian:accounts-ui-bootstrap-3");
+     api.use("nemo64:bootstrap@3.3.1_1","client");
+     api.use("nemo64:bootstrap@3.3.1_1","server", {'weak': 1});
     // api.use("d3js:d3@3.4.13");
     // api.use("fortawesome:fontawesome@4.2.0_2");
     // api.use("mrt:underscore-string-latest@2.3.3");
@@ -57,8 +79,12 @@ Package.onUse(function(api) {
      /*
      *   AutoForm is a Meteor package that adds UI components and helpers to easily create basic forms with automatic insert and update events, and automatic reactive validation. This package requires and automatically installs the simple-schema package. You can optionally use it with the collection2 package, which you have to add to your app yourself.
      */
-    // api.use("aldeed:autoform@4.2.2");
-    // api.use("aldeed:template-extension@3.1.1","client");
+     api.use("aldeed:autoform@4.2.2");
+
+     /*
+     Adds template features currently missing from the templating package
+     */
+     api.use("aldeed:template-extension@3.1.1","client");
     
     /*
     * A router that works on the server and the browser, designed specifically for Meteor
@@ -91,7 +117,7 @@ Package.onUse(function(api) {
     */
      api.use("alanning:roles@1.2.13");
 
-    // api.use("cmather:handlebars-server@2.0.0","server");
+     api.use("cmather:handlebars-server@2.0.0","server");
     // api.use("momentjs:moment@2.8.4", 'client');
     // api.use("sacha:spin@2.0.4", "client");
 
@@ -107,16 +133,16 @@ Package.onUse(function(api) {
 
     /*  implying these are reused in realTime packages  */
 
-    // api.imply("less");
+     api.imply("less");
     // api.imply("amplify");
     // api.imply("accounts-base");
-    // api.imply("ui");
+     api.imply("ui");
     // api.imply("browser-policy");
 
     // api.imply("aldeed:collection2");
      api.imply("aldeed:simple-schema");
-    // api.imply("aldeed:autoform");
-    // api.imply("aldeed:template-extension");
+     api.imply("aldeed:autoform");
+     api.imply("aldeed:template-extension");
      api.imply("iron:router");
     // api.imply("cfs:graphicsmagick");
     // api.imply("cfs:filesystem");
@@ -162,7 +188,7 @@ Package.onUse(function(api) {
      "server/app.coffee",
     // "server/register.coffee",
     // "server/security.coffee",
-    // "server/publications.coffee",
+     "server/publications.coffee",
      "server/fixtures.coffee",
     // "server/factories.coffee",
     // "server/methods/methods.coffee",
@@ -182,22 +208,24 @@ Package.onUse(function(api) {
       // "lib/jquery-autosize/jquery.autosize.js",
       // "lib/imagesLoaded/imagesloaded.pkgd.js",
 
+      // "lib/jquery-ui/jquery-ui-1.11.4.custom.js",
+      // "lib/jquery-ui/jquery-ui-1.11.4.custom.css",
       // "lib/jquery-ui/jquery-ui-1.10.4.custom.js",
       // "lib/jquery-ui/jquery-ui-1.10.3.custom.css",
       // "lib/jquery-collapsible/jquery.collapsible.js",
       // "lib/jquery-serialize/jquery.serialize-hash.coffee",
       // "lib/jquery-cookie/jquery.cookie.js",
 
-      // "lib/openexchangerates/money.js",
-      // "lib/openexchangerates/accounting.js",
+       "lib/openexchangerates/money.js",
+       "lib/openexchangerates/accounting.js",
 
       // "client/subscriptions.coffee",
       // "client/app.coffee",
 
-      // "client/helpers/helpers.coffee",
-      // "client/helpers/i18n/i18n.coffee",
+       "client/helpers/helpers.coffee",
+       "client/helpers/i18n/i18n.coffee",
       // "client/helpers/metadata.coffee",
-      // "client/helpers/spacebars.coffee",
+       "client/helpers/spacebars.coffee",
 
       // "client/workflows/cart/workflow.coffee",
       // "client/workflows/orders/workflow.coffee",
@@ -208,13 +236,13 @@ Package.onUse(function(api) {
        "client/templates/layout/header/header.html",
       // "client/templates/layout/header/header.coffee",
 
-      // "client/templates/layout/header/tags/tags.html",
+       "client/templates/layout/header/tags/tags.html",
       // "client/templates/layout/header/tags/tags.coffee",
 
-      // "client/templates/layout/header/i18n/i18n.html",
+       "client/templates/layout/header/i18n/i18n.html",
       // "client/templates/layout/header/i18n/i18n.coffee",
 
-      // "client/templates/layout/header/brand/brand.html",
+       "client/templates/layout/header/brand/brand.html",
 
        "client/templates/layout/footer/footer.html",
 
@@ -377,13 +405,13 @@ Package.onUse(function(api) {
       // "client/templates/dashboard/settings/settingsAccount/shopMember/memberForm/memberForm.coffee",
 
        "client/templates/products/products.html",
-      // "client/templates/products/products.coffee",
+       "client/templates/products/products.coffee",
 
-      // "client/templates/products/productList/productList.html",
-      // "client/templates/products/productList/productList.coffee",
+       "client/templates/products/productList/productList.html",
+       "client/templates/products/productList/productList.coffee",
 
        "client/templates/products/productGrid/productGrid.html",
-      // "client/templates/products/productGrid/productGrid.coffee",
+       "client/templates/products/productGrid/productGrid.coffee",
 
       // "client/templates/products/productDetail/productDetail.html",
       // "client/templates/products/productDetail/productDetail.coffee",
