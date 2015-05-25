@@ -253,7 +253,7 @@ Package.onUse(function(api) {
        "client/templates/layout/loading/loading.html",
        "client/templates/layout/notFound/notFound.html",
 
-      // "client/templates/layout/notice/unauthorized.html",
+       "client/templates/layout/notice/unauthorized.html",
       // "client/templates/layout/notice/shopNotFound.html",
 
       // "client/templates/accounts/accounts-ui/login_buttons.html",
@@ -413,14 +413,14 @@ Package.onUse(function(api) {
        "client/templates/products/productGrid/productGrid.html",
        "client/templates/products/productGrid/productGrid.coffee",
 
-      // "client/templates/products/productDetail/productDetail.html",
-      // "client/templates/products/productDetail/productDetail.coffee",
+       "client/templates/products/productDetail/productDetail.html",
+       "client/templates/products/productDetail/productDetail.coffee",
 
-      // "client/templates/products/productDetail/edit/edit.html",
-      // "client/templates/products/productDetail/edit/edit.coffee",
+       "client/templates/products/productDetail/edit/edit.html",
+       "client/templates/products/productDetail/edit/edit.coffee",
 
-      // "client/templates/products/productDetail/images/productImageGallery.html",
-      // "client/templates/products/productDetail/images/productImageGallery.coffee",
+       "client/templates/products/productDetail/images/productImageGallery.html",
+       "client/templates/products/productDetail/images/productImageGallery.coffee",
 
       // "client/templates/products/productDetail/tags/tags.html",
       // "client/templates/products/productDetail/tags/tags.coffee",

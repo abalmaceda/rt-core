@@ -1,0 +1,23 @@
+<template name="productImageGallery">
+<div id="galleryDropPane" class="galleryDropPane">
+  <ul class="gallery">
+    {{#each media}}
+      {{> imageDetail}}
+    {{else}}
+     <li>
+        <img src= "/resources/placeholder.gif" class="img-responsive" id="img-upload">
+     </li>
+    {{/each}}
+  </ul>
+  {{>imageUploader}}
+</div>
+</template>
+
+<template name="imageUploader">
+{{#if userHasRole "admin"}}
+  <div id="dropzone" class="dropzone">
+   <input name="files" id="files" class="hidden" type="file" multiple/>
+    <div class="btn btn-default btn-block" id="btn-upload" data-i18n="productDetail.dropFile">Drop file to upload</div>
+  </div>
+{{/if}}
+</template>

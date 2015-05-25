@@ -1,13 +1,91 @@
+
 ###
-# get price range of a product
-# if no only one price available, return it
+#  Reactive current product
+#  This ensures reactive products, without session
+#  products:
+#  set usage: currentProduct.set "productId",string
+#  get usage: currentProduct.get "productId"
+#  variants:
+#  set usage: currentProduct.set "variantId",string
+#  get usage: currentProduct.get "variantId"
+###
+@currentProduct =
+	keys: {}
+	deps: {}
+	equals: (key) ->
+		@keys[key]
+	get: (key) ->
+	    @ensureDeps key
+	    @deps[key].depend()
+	    @keys[key]
+	set: (key, value) ->
+	    @ensureDeps key
+	    @keys[key] = value
+	    @deps[key].changed()
+	changed: (key) ->
+	    @ensureDeps key
+	    @deps[key].changed()
+	ensureDeps: (key) ->
+		#Dependencies don't store data, they just track the set of computations
+		#to invalidate if something changes. Typically, a data value will be 
+		#accompanied by a Dependency object that tracks the computations that depend on it
+		@deps[key] = new Tracker.Dependency unless @deps[key]
+
+currentProduct = @currentProduct
+
+@setCurrentVariant = (variantId) ->
+	#Si se hace un unsetting, simplemente hacerlo
+	if variantId is null
+		currentProduct.set "variantId", null
+		currentProduct.set "variantId", selectedVariantId()
+	return unless variantId
+	#si no se realiza un unsetting, obtener el actual varian ID
+	currentId = selectedVariantId()
+	#Solo se debe setear el variantId si es distinto al actual
+	# En caso contrario, no es necesario realizar nada
+	return if currentId is variantId
+	#Setear nuevo valor
+	currentProduct.set "variantId", variantId
+	return
+
+@setCurrentProduct = (productId) ->
+	#Si se hace un unsetting, simplemente hacerlo
+	if productId is null
+		currentProduct.set "productId", null
+	return unless productId
+	#Obtenere el actual product ID si no se hace unsetting
+	currentId = selectedProductId()
+	#si se cambia el actual ID por otro, hacerlo
+	# En caso contrario no es necesario realizar set.
+	return if currentId is productId
+	currentProduct.set "productId", productId
+	# Limpiar el actual variant tambien
+	currentProduct.set "variantId", null
+	return
+
+@selectedVariantId = ->
+	id = currentProduct.get "variantId"
+	return id if id?
+	# default to top variant in selectedProduct
+	product = selectedProduct()
+	return unless product
+	variants = (variant for variant in product.variants when not variant.parentId)
+	return unless variants.length > 0
+	id = variants[0]._id
+	currentProduct.set "variantId", id
+	return id
+
+
+###
+# Obtener el rango de precios de un producto
+# Si no existe ningun valor disponible, regresar
 ###
 @getProductPriceRange = (productId) ->
 	# if no productId provided, use currently selected
 	product = Products.findOne(productId || selectedProduct()._id )
 	productId = product?._id
 
-	# let's leave if nothing can be used
+	# Abandonar si no hay nada que hacer
 	return unless productId
 
 	variants = (variant for variant in product.variants when not variant.parentId)
@@ -65,3 +143,11 @@
 	if priceMin is priceMax
 		return priceMin
 	return priceMin + ' - ' + priceMax
+
+
+@selectedProduct = ->
+	id = selectedProductId()
+	return Products.findOne id
+
+@selectedProductId = ->
+	return currentProduct.get "productId"
