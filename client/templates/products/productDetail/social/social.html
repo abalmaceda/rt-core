@@ -1,0 +1,14 @@
+<template name="productSocial">
+	<div class="social-media">
+	<!--
+		TODO:
+		No entiendo nada de este código
+		-{{#each reactionApps provides="social" name="reaction-social"}}
+		-{{> Template.dynamic template=template data=customSocialSettings }}
+	-->
+		{{!-- Social Commentary --}}
+		{{#each reactionApps provides="social" name="reaction-social"}}
+		{{> Template.dynamic template=template data=customSocialSettings }}
+		{{/each}}
+	</div>
+</template>

@@ -1,3 +1,6 @@
+<!--
+	TODO
+-->
 <template name="productGrid">
 <div class="product-grid" data-event-category="grid" data-event-action="generic-click" data-event-label="product grid click">
   <ul class="product-grid-list list-unstyled" id="product-grid-list">
@@ -8,6 +11,9 @@
 </div>
 </template>
 
+<!--
+	TODO
+-->
 <template name="productGridItems">
 <li class="product-grid-item" data-id="{{_id}}" id="{{_id}}">
   {{> gridNotice}}
@@ -26,7 +32,9 @@
 </li>
 </template>
 
-
+<!--
+	TODO
+-->
 <template name="gridNotice">
   {{#if isSoldOut}}
     {{#if isBackorder}}
@@ -42,7 +50,9 @@
 
 </template>
 
-
+<!--
+	TODO
+-->
 <template name="gridContent">
 <a href="{{pathForSEO 'product' 'handle'}}" data-event-category="grid" data-event-action="product-click" data-event-label="grid product click" data-event-value="{{_id}}">
   <div class="overlay">
@@ -52,7 +62,9 @@
 </a>
 </template>
 
-
+<!--
+	TODO
+-->
 <template name="gridControls">
 {{#if userHasRole "admin"}}
   <div class="product-grid-controls">

@@ -84,10 +84,17 @@ _.extend RealTimeCore,
         has = member.isAdmin or _.intersection(permissions, member.permissions).length
     return has
 
-  hasOwnerAccess: (shop, userId) ->
-    shop = @getCurrentShop() unless shop
-    userId = Meteor.userId() unless userId
-    return Roles.userIsInRole(userId, "admin") or userId is shop.ownerId
+    ###
+    #	Verifica si el usuario tiene acceso de propietario
+    #	@todo Verificar tipo del parametro shop
+	#	@param shop [] 
+	#	@param userId [string] Id del usuario que se desea consultar
+	#	@return [bool] si tiene acceso de Owner
+	###
+	hasOwnerAccess: (shop, userId) ->
+		shop = @getCurrentShop() unless shop
+		userId = Meteor.userId() unless userId
+		return Roles.userIsInRole(userId, "admin") or userId is shop.ownerId
 
   canCheckoutAsGuest = (client) ->
     return @getCurrentShop(client).canCheckoutAsGuest || false

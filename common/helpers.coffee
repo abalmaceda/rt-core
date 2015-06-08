@@ -1,4 +1,8 @@
 _.extend RealTimeCore,
+  ###
+  # ---TODO---
+  # @param
+  ### 
   shopIdAutoValue: ->
     return if @isSet and @isFromTrustedCode
 

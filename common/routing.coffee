@@ -24,9 +24,9 @@ Router.configure
 		return
 
 # we always need to wait on these publications
-# Router.waitOn ->
-#   @subscribe "shops"
-#   @subscribe "Packages"
+Router.waitOn ->
+	@subscribe "shops"
+	@subscribe "Packages"
 
 
 # general realtime controller

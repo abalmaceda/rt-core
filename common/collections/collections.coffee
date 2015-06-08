@@ -8,6 +8,11 @@
 # in template: {{cart.cartCount}}
 # in code: RealTimeCore.Collections.Cart.findOne().cartTotal()
 ###
+
+###
+  # ---TODO---
+  # @param
+  ### 
 RealTimeCore.Collections.Cart = Cart = @Cart = new Mongo.Collection "Cart",
   transform: (cart) ->
     cart.cartCount = ->

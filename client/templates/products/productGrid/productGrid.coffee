@@ -1,7 +1,14 @@
 Media = RealTimeCore.Collections.Media
 
 Template.productGrid.helpers
-  	products: ->
+	###
+	# ---TODO---
+	#	
+	# 	@message 
+	#	@param name [type] 
+	#	@return [type]
+	###
+	products: ->
   		return Products.find().fetch()
 	    # ###
 	    # # take natural sort, sorting by updatedAt
@@ -48,5 +55,12 @@ Template.productGrid.helpers
 
 
 Template.gridContent.helpers
+	###
+	# ---TODO---
+	#	
+	# 	@message 
+	#	@param name [type] 
+	#	@return [type]
+	###
 	displayPrice: () ->
     	getProductPriceRange(@_id) if @_id

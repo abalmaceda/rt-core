@@ -77,8 +77,8 @@ currentProduct = @currentProduct
 
 
 ###
-# Obtener el rango de precios de un producto
-# Si no existe ningun valor disponible, regresar
+# get price range of a product
+# if no only one price available, return it
 ###
 @getProductPriceRange = (productId) ->
 	# if no productId provided, use currently selected
@@ -144,10 +144,45 @@ currentProduct = @currentProduct
 		return priceMin
 	return priceMin + ' - ' + priceMax
 
-
+###
+# 	Obtiene el product seleccionado
+#	@return [Product] 
+###
 @selectedProduct = ->
 	id = selectedProductId()
 	return Products.findOne id
 
+###
+# 	Obtene el id del actual product
+#	@return [String] id 
+###
 @selectedProductId = ->
 	return currentProduct.get "productId"
+
+###
+#	TODO
+###
+@selectedVariant = ->
+	id = selectedVariantId()
+	return unless id
+	product = selectedProduct()
+	return unless product
+	variant = _.findWhere product.variants, _id: id
+	return variant
+
+###
+# Obtiene el variantId del producto actual. Si no esta definido, busca la variante "top" en el producto seleccionado
+#	@return [String] id de la variant del product actual
+###
+@selectedVariantId = ->
+	id = currentProduct.get "variantId"
+	return id if id?
+	# default to top variant in selectedProduct
+	product = selectedProduct()
+	return unless product
+	variants = (variant for variant in product.variants when not variant.parentId)
+	return unless variants.length > 0
+	id = variants[0]._id
+	# Before return id, set the "variantId" value in currentProduct
+	currentProduct.set "variantId", id
+	return id

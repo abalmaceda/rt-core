@@ -1,8 +1,9 @@
-
-
 ###
-# return shop /locale specific formatted price
-# also accepts a range formatted with " - "
+# ---TODO---
+#	
+# 	@message also accepts a range formatted with " - "
+#	@param price [String] 
+#	@return [String] shop /locale specific formatted price
 ###
 Template.registerHelper "formatPrice", (price) ->
 	try
