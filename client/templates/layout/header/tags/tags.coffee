@@ -1,3 +1,6 @@
+###
+# ---TODO---
+###
 Template.headerTags.helpers
 	tagsComponent: ->
 		# TODO 

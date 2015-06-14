@@ -234,7 +234,7 @@ Package.onUse(function(api) {
 	"client/templates/layout/layout.coffee",
 
 	"client/templates/layout/header/header.html",
-	// "client/templates/layout/header/header.coffee",
+	"client/templates/layout/header/header.coffee",
 
 	"client/templates/layout/header/tags/tags.html",
 	"client/templates/layout/header/tags/tags.coffee",
@@ -263,14 +263,14 @@ Package.onUse(function(api) {
 	// "client/templates/accounts/accounts-ui/login_buttons_single.html",
 	// "client/templates/accounts/accounts-ui/accounts-ui.coffee",
 
-	// "client/templates/accounts/accounts.html",
-	// "client/templates/accounts/accounts.coffee",
+	"client/templates/accounts/accounts.html",
+	"client/templates/accounts/accounts.coffee",
 
 	// "client/templates/accounts/inline/inline.html",
 	// "client/templates/accounts/inline/inline.coffee",
 
-	// "client/templates/accounts/dropdown/dropdown.html",
-	// "client/templates/accounts/dropdown/dropdown.coffee",
+	"client/templates/accounts/dropdown/dropdown.html",
+	"client/templates/accounts/dropdown/dropdown.coffee",
 
 	// "client/templates/cart/cartDrawer/cartDrawer.html",
 	// "client/templates/cart/cartDrawer/cartDrawer.coffee",
@@ -281,8 +281,8 @@ Package.onUse(function(api) {
 	// "client/templates/cart/cartDrawer/cartSubTotals/cartSubTotals.html",
 	// "client/templates/cart/cartDrawer/cartSubTotals/cartSubTotals.coffee",
 
-	// "client/templates/cart/cartIcon/cartIcon.html",
-	// "client/templates/cart/cartIcon/cartIcon.coffee",
+	"client/templates/cart/cartIcon/cartIcon.html",
+	"client/templates/cart/cartIcon/cartIcon.coffee",
 
 	// "client/templates/cart/cartPanel/cartPanel.html",
 	// "client/templates/cart/cartPanel/cartPanel.coffee",

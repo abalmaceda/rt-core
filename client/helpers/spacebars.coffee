@@ -32,6 +32,55 @@ Template.registerHelper "pathForSEO", (path, params) ->
 		return "/"+ path + "/" + this[params]
 	else
 		return Router.path path,this
+
+
+###
+# ---TODO---
+# methods to return cart calculated values
+# cartCount, cartSubTotal, cartShipping, cartTaxes, cartTotal
+# are calculated by a transformation on the collection
+# and are available to use in template as cart.xxx
+# in template: {{cart.cartCount}}
+# in code: ReactionCore.Collections.Cart.findOne().cartTotal()
+###
+Template.registerHelper "cart", () ->
+	###
+	# ---TODO---
+	#	return true if there is an issue with the user's cart and we should display the warning icon
+	# 	@message 
+	#	@param name [type] 
+	#	@return [type]
+	###
+	showCartIconWarning: ->
+		if @.showLowInventoryWarning()
+			return true
+		return false
+
+	###
+	# ---TODO---
+	#	return true if any item in the user's cart has a low inventory warning
+	# 	@message 
+	#	@param name [type] 
+	#	@return [type]
+	###
+	showLowInventoryWarning: ->
+		storedCart = Cart.findOne()
+		if storedCart?.items
+			for item in storedCart?.items
+				if item.variants?.inventoryPolicy and item.variants?.lowInventoryWarningThreshold
+					if (item.variants?.inventoryQuantity <= item.variants.lowInventoryWarningThreshold)
+						return true
+		return false
+
+# # return true if item variant has a low inventory warning
+# showItemLowInventoryWarning: (variant) ->
+# if variant?.inventoryPolicy and variant?.lowInventoryWarningThreshold
+# if (variant?.inventoryQuantity <= variant.lowInventoryWarningThreshold)
+# return true
+# return false
+
+
+
 ###
 #  General helpers for template functionality
 ###
@@ -68,3 +117,13 @@ Template.registerHelper "condition", (v1, operator, v2, options) ->
 			v1 >= v2
 		else
 			throw "Undefined operator \"" + operator + "\""
+
+###
+#	
+#	@todo
+# 	@message 
+#	@param name [type] 
+#	@return [type]
+###
+Template.registerHelper "orElse", (v1, v2) ->
+  return v1 || v2

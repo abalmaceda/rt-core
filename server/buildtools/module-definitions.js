@@ -1,7 +1,7 @@
 moduleDefinitions = {
 	// "variables":{less:["default/variables.less"]},
 	// "mixins":{less:["default/mixins.less", "default/bootstrap.rtl.less"]},
-	// "accounts":{less:["theme/accounts/accounts.less","theme/accounts/inline/inline.less"]},
+	"accounts":{less:["theme/accounts/accounts.less","theme/accounts/inline/inline.less"]},
 	"cart":{
 		less:[
 	// 'theme/cart/cart.less',
@@ -41,7 +41,7 @@ moduleDefinitions = {
 	// 'theme/dashboard/shop/settings.less',
 	// 'theme/dashboard/widget/widget.less'
 		]
-	},
+	},		
 	"layout":{
 		less:[
 			'theme/layout/footer/footer.less',
