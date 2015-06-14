@@ -59,6 +59,7 @@ Package.onUse(function(api) {
 	// api.use("amplify@1.0.0");
 
 	/*  community packages  */
+	api.use("mquandalle:bower@1.3.12_3");
 	//api.use("ian:accounts-ui-bootstrap-3");
 	api.use("nemo64:bootstrap@3.3.1_1","client");
 	api.use("nemo64:bootstrap@3.3.1_1","server", {'weak': 1});
@@ -131,6 +132,9 @@ Package.onUse(function(api) {
 
 	// api.use("meteorhacks:ssr@2.1.2");
 
+	/*
+		TODO: Explicar para que son los imply. Creo que es para que se usen en los otros packages
+	*/
 	/*  implying these are reused in realTime packages  */
 
 	api.imply("less");
@@ -138,8 +142,8 @@ Package.onUse(function(api) {
 	// api.imply("accounts-base");
 	api.imply("ui");
 	// api.imply("browser-policy");
-
-	// api.imply("aldeed:collection2");
+	api.imply("mquandalle:bower");
+	api.imply("aldeed:collection2");
 	api.imply("aldeed:simple-schema");
 	api.imply("aldeed:autoform");
 	api.imply("aldeed:template-extension");
@@ -161,6 +165,8 @@ Package.onUse(function(api) {
 	} else {
 		throw new Error("Meteor upgrade required.")
 	}
+
+	api.addFiles("lib/bower.json","client");
 
 	api.addFiles([
 	// "lib/statemachine/state-machine.js",
@@ -212,12 +218,12 @@ Package.onUse(function(api) {
 	// "lib/jquery-ui/jquery-ui-1.11.4.custom.css",
 	// "lib/jquery-ui/jquery-ui-1.10.4.custom.js",
 	// "lib/jquery-ui/jquery-ui-1.10.3.custom.css",
-	// "lib/jquery-collapsible/jquery.collapsible.js",
+	"lib/bower/collapsible/jquery.collapsible.js",
 	// "lib/jquery-serialize/jquery.serialize-hash.coffee",
 	// "lib/jquery-cookie/jquery.cookie.js",
 
-	"lib/openexchangerates/money.js",
-	"lib/openexchangerates/accounting.js",
+	"lib/bower/openexchangerates.money/money.js",
+	"lib/bower/openexchangerates.accounting/accounting.min.js",
 
 	// "client/subscriptions.coffee",
 	"client/app.coffee",
@@ -258,10 +264,10 @@ Package.onUse(function(api) {
 
 	// "client/templates/accounts/accounts-ui/login_buttons.html",
 	// "client/templates/accounts/accounts-ui/login_buttons_dialogs.html",
-	// "client/templates/accounts/accounts-ui/login_buttons_dropdown.html",
-	// "client/templates/accounts/accounts-ui/login_buttons_dropdown.coffee",
+	"client/templates/accounts/accounts-ui/login_buttons_dropdown.html",
+	"client/templates/accounts/accounts-ui/login_buttons_dropdown.coffee",
 	// "client/templates/accounts/accounts-ui/login_buttons_single.html",
-	// "client/templates/accounts/accounts-ui/accounts-ui.coffee",
+	"client/templates/accounts/accounts-ui/accounts-ui.coffee",
 
 	"client/templates/accounts/accounts.html",
 	"client/templates/accounts/accounts.coffee",
