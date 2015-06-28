@@ -1,5 +1,6 @@
 <!--
 	TODO
+	Muestra los productos disponibles.
 -->
 <template name="products">
 	{{>productGrid}}
@@ -11,13 +12,9 @@
 <template name="productListGrid">
 	<div class="row">
 		{{>productGrid}}
-	<!--
-		TODO
-
 		{{#if userHasRole "admin"}}
 			{{>productList}}
 		{{/if}}
-	-->
 	</div>
 </template>
 

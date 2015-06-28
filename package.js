@@ -201,7 +201,7 @@ Package.onUse(function(api) {
 	"server/publications.coffee",
 	"server/fixtures.coffee",
 	// "server/factories.coffee",
-	// "server/methods/methods.coffee",
+	"server/methods/methods.coffee",
 	// "server/methods/cart/cart.coffee",
 	// "server/methods/cart/checkout/checkout.coffee",
 	// "server/methods/orders/orders.coffee",
@@ -256,9 +256,9 @@ Package.onUse(function(api) {
 
 	"client/templates/layout/footer/footer.html",
 
-	// "client/templates/layout/alerts/bootstrap-alerts.coffee",
-	// "client/templates/layout/alerts/alerts.html",
-	// "client/templates/layout/alerts/alerts.coffee",
+	"client/templates/layout/alerts/bootstrap-alerts.coffee",
+	"client/templates/layout/alerts/alerts.html",
+	"client/templates/layout/alerts/alerts.coffee",
 
 	"client/templates/layout/loading/loading.html",
 	"client/templates/layout/notFound/notFound.html",

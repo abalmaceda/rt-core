@@ -60,7 +60,7 @@ moduleDefinitions = {
 		less:[
 			'theme/layout/footer/footer.less',
 			'theme/layout/header/header.less',
-			//'theme/layout/header/tags/tags.less'
+			'theme/layout/header/tags/tags.less'
 		]
 	},
 	"products":{
