@@ -12,12 +12,18 @@ Template.loginDropdown.events
 	"click .dropdown-menu": (event) ->
 		event.stopPropagation()
 
-# "click #logout": (event, template) ->
-# Session.set 'displayConsoleNavBar', false
-# Meteor.logout (err) ->
-# Meteor._debug err if err
-# event.preventDefault()
-# template.$('.dropdown-toggle').dropdown('toggle') # close dropdown
+	###
+	# ---TODO---
+	# 	@message 
+	#	@param event [type] 
+	#	@return [type]
+	###
+	"click #logout": (event, template) ->
+		Session.set 'displayConsoleNavBar', false
+		Meteor.logout (err) ->
+			Meteor._debug err if err
+		event.preventDefault()
+		template.$('.dropdown-toggle').dropdown('toggle') # close dropdown
 
 	###
 	# ---TODO---

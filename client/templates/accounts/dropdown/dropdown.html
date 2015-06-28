@@ -1,20 +1,35 @@
 <!--
-	TODO
+	Define la UI DROPDOWN de la ventana de login dependiendo si es un usuario autenticado o no.
 -->
 <template name="loginDropdown">
 	<div class="dropdown" role="menu">
+		<!--
+			UI para usuario autenticado
+		-->
 		{{#if currentUser}}
 			<div class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000">
 				<span class="circular-icon" style="background: url({{socialImage}}) no-repeat center;"></span>
 				<span id="logged-in-display-name"> {{displayName}}<b class="caret"></b></span>
 			</div>
 			<div class="dropdown-menu pull-right" role="menu">
+				<!--
+					Agrega elementos particulares del usuario autenticado
+				-->
 				{{> userDropdown}}
 			</div>
+		<!--
+			UI para usuario no autenticado
+		-->
 		{{else}}
 			<div class="accounts-dropdown">
-				<div class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000"><span data-i18n="accountsUI.signIn">Sign In</span><b class="caret"></b></div>
+				<div class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000">
+					<span data-i18n="accountsUI.signIn">Sign In</span>
+					<b class="caret"></b>
+				</div>
 				<div class="accounts-dialog accounts-layout dropdown-menu pull-right">
+					<!--
+						Agrega elementos particulares de usuario no autenticado
+					-->
 					{{> _loginButtonsLoggedOutAllServices}}
 				</div>
 			</div>

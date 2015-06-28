@@ -14,7 +14,7 @@ Package.registerBuildPlugin({
 	name: 'theme-configurator',
 	use: [
 		'underscore',
-		'reactioncommerce:core-theme@1.3.1'
+		'rt-core-theme'
 	],
 	sources: [
 		'server/buildtools/module-definitions.js',
@@ -26,7 +26,7 @@ Package.registerBuildPlugin({
 
 Package.onUse(function(api) {
 	//api.versionsFrom('1.0.3.2');
-	//api.addFiles('rt-core.js');
+	api.addFiles('rt-core.js');
 
 	if (api.versionsFrom) {
 	api.versionsFrom('METEOR@1.0');
@@ -57,10 +57,14 @@ Package.onUse(function(api) {
 	// api.use("check");
 	// api.use("browser-policy");
 	// api.use("amplify@1.0.0");
+	// api.use("reactive-var");
 
 	/*  community packages  */
 	api.use("mquandalle:bower@1.3.12_3");
-	//api.use("ian:accounts-ui-bootstrap-3");
+	/*
+		Al parecer este packages ya no se utiliza
+		api.use("ian:accounts-ui-bootstrap-3");
+	*/
 	api.use("nemo64:bootstrap@3.3.1_1","client");
 	api.use("nemo64:bootstrap@3.3.1_1","server", {'weak': 1});
 	// api.use("d3js:d3@3.4.13");
@@ -216,16 +220,16 @@ Package.onUse(function(api) {
 
 	// "lib/jquery-ui/jquery-ui-1.11.4.custom.js",
 	// "lib/jquery-ui/jquery-ui-1.11.4.custom.css",
-	// "lib/jquery-ui/jquery-ui-1.10.4.custom.js",
-	// "lib/jquery-ui/jquery-ui-1.10.3.custom.css",
+	"lib/jquery-ui/jquery-ui-1.10.4.custom.js",
+	"lib/jquery-ui/jquery-ui-1.10.3.custom.css",
 	"lib/bower/collapsible/jquery.collapsible.js",
 	// "lib/jquery-serialize/jquery.serialize-hash.coffee",
-	// "lib/jquery-cookie/jquery.cookie.js",
+	"lib/bower/jquery.cookie/jquery.cookie.js",
 
 	"lib/bower/openexchangerates.money/money.js",
 	"lib/bower/openexchangerates.accounting/accounting.min.js",
 
-	// "client/subscriptions.coffee",
+	"client/subscriptions.coffee",
 	"client/app.coffee",
 
 	"client/helpers/helpers.coffee",
@@ -246,7 +250,7 @@ Package.onUse(function(api) {
 	"client/templates/layout/header/tags/tags.coffee",
 
 	"client/templates/layout/header/i18n/i18n.html",
-	// "client/templates/layout/header/i18n/i18n.coffee",
+	"client/templates/layout/header/i18n/i18n.coffee",
 
 	"client/templates/layout/header/brand/brand.html",
 
@@ -262,17 +266,17 @@ Package.onUse(function(api) {
 	"client/templates/layout/notice/unauthorized.html",
 	// "client/templates/layout/notice/shopNotFound.html",
 
-	// "client/templates/accounts/accounts-ui/login_buttons.html",
-	// "client/templates/accounts/accounts-ui/login_buttons_dialogs.html",
+	"client/templates/accounts/accounts-ui/login_buttons.html",
+	"client/templates/accounts/accounts-ui/login_buttons_dialogs.html",
 	"client/templates/accounts/accounts-ui/login_buttons_dropdown.html",
 	"client/templates/accounts/accounts-ui/login_buttons_dropdown.coffee",
-	// "client/templates/accounts/accounts-ui/login_buttons_single.html",
+	"client/templates/accounts/accounts-ui/login_buttons_single.html",
 	"client/templates/accounts/accounts-ui/accounts-ui.coffee",
 
 	"client/templates/accounts/accounts.html",
 	"client/templates/accounts/accounts.coffee",
 
-	// "client/templates/accounts/inline/inline.html",
+	"client/templates/accounts/inline/inline.html",
 	// "client/templates/accounts/inline/inline.coffee",
 
 	"client/templates/accounts/dropdown/dropdown.html",
@@ -502,9 +506,9 @@ Package.onUse(function(api) {
 	], ["client"]);
 
 	api.export([
-		// "currentProduct",
+		"currentProduct",
 		// "ShopController",
-		// "Products",
+		"Products",
 		// "Cart",
 		// "Tags"
 	], ["client", "server"]);
