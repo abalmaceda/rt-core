@@ -1,3 +1,4 @@
+<!--TODO -->
 <template name="coreHead">
   <head>
     <title>Title_Test</title>
@@ -5,15 +6,15 @@
   </head>
 </template>
 
+<!-- TODO -->
 <template name="coreLayout">
-  <nav class="realtime-navigation-header">{{> yield region="layoutHeader"}}</nav>
-  
-  <div class="realtime-dashboard-drawer">{{> yield region="dashboard"}}</div>
-  <main role="main" id="main">
-    <div class="container-fluid">
-      
-      {{> yield}}
-    </div>
-  </main>
-  <footer class="realtime-navigation-footer">{{>yield region="layoutFooter"}}</footer>
+	<nav class="realtime-navigation-header">{{> yield region="layoutHeader"}}</nav>
+
+	<div class="realtime-dashboard-drawer">{{> yield region="dashboard"}}</div>
+	<main role="main" id="main">
+		<div class="container-fluid">
+			{{> yield}}
+		</div>
+	</main>
+	<footer class="realtime-navigation-footer">{{>yield region="layoutFooter"}}</footer>
 </template>

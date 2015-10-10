@@ -9,15 +9,15 @@
 				</span>
 				<div class="variant-progress-item">
 					{{#if inventoryManagement}}
-					{{#unless isSoldOut }}
-					<span class="variant-qty badge">{{inventoryQuantity}}</span>
-					{{else}}
-					{{#if inventoryPolicy }}
-					<span class="variant-qty-sold-out badge">Sold Out!</span>
-					{{ else }}
-					<span class="variant-qty-sold-out badge">Backorder</span>
-					{{/if}}
-					{{/unless}}
+						{{#unless isSoldOut }}
+							<span class="variant-qty badge">{{inventoryQuantity}}</span>
+						{{else}}
+							{{#if inventoryPolicy }}
+								<span class="variant-qty-sold-out badge">Sold Out!</span>
+							{{ else }}
+								<span class="variant-qty-sold-out badge">Backorder</span>
+							{{/if}}
+						{{/unless}}
 					{{/if}}
 					<span class="variant-title">{{title}}</span>
 					<span class="variant-price">{{formatPrice displayPrice}}</span>
@@ -31,7 +31,7 @@
 			</div>
 		</div>
 		{{#if userHasRole "admin"}}
-			<!--		{{>variantForm}}		-->
+			{{>variantForm}}
 		{{/if}}
 	</li>
 </template>

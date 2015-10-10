@@ -100,7 +100,7 @@ var handler = function (compileStep, isLiterate) {
 
   createLessFile(mixinsLessFile, [
     "// THIS FILE IS GENERATED, DO NOT MODIFY IT!",
-    "// These are the mixins Reaction provides",
+    "// These are the mixins RealTime provides",
     "// They are included here so you can use them in your less files too,",
     "// However: you should @import \"" + path.basename(importLessFile) + "\" instead of this",
     getLessContent('default/mixins.less')
@@ -109,10 +109,10 @@ var handler = function (compileStep, isLiterate) {
   // create the file that can be modified
   if (! fs.existsSync(importLessFile)) {
     createLessFile(importLessFile, [
-      "// THIS FILE IS FOR YOU TO MODIFY REACTION THEMING!",
+      "// THIS FILE IS FOR YOU TO MODIFY REALTIME THEMING!",
       "// It won't be overwritten as long as it exists.",
       "// You may include this file into your less files to benefit from",
-      "// mixins and variables that Reaction provides.",
+      "// mixins and variables that RealTime provides.",
       "// If you are not using nemo64:bootstrap, you'll need to change",
       "// the boostrap import to your bootstrap.less path",
       '',

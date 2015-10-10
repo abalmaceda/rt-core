@@ -1,7 +1,11 @@
-<!-- TODO -->
+<!--
+	Muestra el detalle de todos los Tags asociados al producto, ademas de permitir crear nuevos y editar los existentes.
+-->
 <template name="productTagInputForm">
 	<div class="tags">
 		<ul class="list-inline tag-edit-list" id="tag-edit-list">
+			<!-- Agrega todos los Tags disponibles. Permite editarlos. -->
+			<!-- TODO: No eniento esa manera de llamar a los tags disponibles. -->
 			{{#each ./tags}}
 			<li data-tag-id="{{_id}}">
 				<div class="tag-input-group">
@@ -20,6 +24,7 @@
 				</div>
 			</li>
 			{{/each}}
+			<!-- Campo tag para agregar uno nuevo -->
 			<li data-tag-id="{{_id}}">
 				<div class="tag-input-group">
 					<span class="tag-input">
@@ -32,7 +37,7 @@
 </template>
 
 <!--
-	Muestra el detalle de todos los tags asociados con el producto
+	Muestra el detalle de todos los tags asociados con el producto.
 -->
 <template name="productDetailTags">
 	<div class="tags">

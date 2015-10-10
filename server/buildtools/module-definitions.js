@@ -65,8 +65,8 @@ moduleDefinitions = {
 	},
 	"products":{
 		less:[
-			// 'theme/products/productDetail/attributes/attributes.less',
-			// 'theme/products/productDetail/images/productImageGallery.less',
+			'theme/products/productDetail/attributes/attributes.less',
+			'theme/products/productDetail/images/productImageGallery.less',
 			'theme/products/productDetail/productDetail.less',
 			// 'theme/products/productDetail/social/social.less',
 			'theme/products/productDetail/tags/tags.less',

@@ -32,8 +32,8 @@ Router.waitOn ->
 # general realtime controller
 @ShopController = RouteController.extend
 	# onAfterAction: ->
-	#   RealTimeCore.MetaData.refresh(@route, @params)
-	#   return
+	# 	RealTimeCore.MetaData.refresh(@route, @params)
+	# 	return
 	layoutTemplate: "coreLayout"
 	yieldTemplates:
 		layoutHeader:

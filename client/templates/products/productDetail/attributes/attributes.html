@@ -1,22 +1,61 @@
 <!--
-	TODO:
+	Corresponde a la componente de UI que contiene los meta datos del Producto.
+	Corresponde a 2 campos editables, uno para el Key y otro para el Value.
 -->
 <template name="metaComponent">
 	<form role="form" name="metafield-component" class="form form-inline metafield-component">
-
-		<!--
-			TODO:
-			Agregar PlaceHolder
-			placeholder="{{i18n 'productDetail.detailsName'}}"
-
-		-->
-		<input type="text" name="key" class="form-control metafield-key-input" value="{{key}}"/>
-		<!--
-			TODO:
-			Agregar PlaceHolder
-			placeholder="{{i18n 'productDetail.detailsInfo'}}"
-
-		-->
-		<input type="text" name="value" class="form-control metafield-value-input" value="{{value}}" />
+		<input type="text" name="key" class="form-control metafield-key-input" value="{{key}}" placeholder="{{i18n 'productDetail.detailsName'}}"/>
+		<input type="text" name="value" class="form-control metafield-value-input" value="{{value}}" placeholder="{{i18n 'productDetail.detailsInfo'}}"/>
 	</form>
+</template>
+
+<!--
+	Muestra los Meta Datos del producto (Detalles).
+	Ejemplo de meta datos son: 
+	material -> algodon
+	calidad -> excelente
+-->
+<template name="productMetaField">
+	<!-- TODO -->
+	{{#if ../metafields}}
+		<ul class="list-group metafield-list hidden-xs">
+			<!-- TODO -->
+			{{#each ./metafields}}
+				<li class="list-group-item metafield-list-item">
+					<div class="row">
+						<!--
+							Agregar meta datos solo si estan disponibles.
+							La idea no es agregar un valor vacio o Null
+						 -->
+						{{#if key}}<div class="col-sm-4">{{key}}</div>{{/if}}
+						{{#if value}}<div class="col-sm-8">{{value}}</div>{{/if}}
+					</div>
+				</li>
+			{{/each}}
+		</ul>
+	{{/if}}
+</template>
+
+<!--
+	Muestra los Meta datos del producto en modo Propietarrio. Para poder modificarlos
+-->
+<template name="productMetaFieldForm">
+	<ul class="list-group product-detail-edit">
+	<!-- TODO -->
+		{{#each ./metafields}}
+			<li class="list-group-item metafield-list-item">
+				<!--
+					Agrega una metaComponente para cada Key-Value disponibles.
+				-->
+				{{>metaComponent}}
+				<span class="metafield-remove"><i class="fa fa-times-circle"></i></span>
+			</li>
+		{{/each}}
+		<li class="list-group-item metafield-new-item">
+			<!--
+				Agrega una metaComponente para crear un nuevo par Key-Value.
+			-->
+			{{>metaComponent}}
+		</li>
+	</ul>
 </template>

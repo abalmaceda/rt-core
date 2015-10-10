@@ -58,7 +58,14 @@ RealTimeCore.Collections.Customers = Customers = @Customers = new Mongo.Collecti
 RealTimeCore.Collections.Customers.attachSchema RealTimeCore.Schemas.Customer
 
 # Orders
-RealTimeCore.Collections.Orders = Orders = @Orders = new Mongo.Collection "Orders"
+RealTimeCore.Collections.Orders = Orders = @Orders = new Mongo.Collection "Orders",
+	transform: (order) ->
+		order.itemCount = ->
+			count = 0
+			((count += items.quantity) for items in order.items) if order?.items
+			return count
+		return order
+
 RealTimeCore.Collections.Orders.attachSchema [RealTimeCore.Schemas.Cart, RealTimeCore.Schemas.OrderItems]
 
 # Packages

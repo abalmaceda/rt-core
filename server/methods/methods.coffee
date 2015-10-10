@@ -2,7 +2,6 @@ Packages = RealTimeCore.Collections.Packages
 
 Meteor.methods
 	###
-	# 
 	# 	Determine user's countryCode and return locale object
 	# @example (title)
 	# @note message

@@ -35,6 +35,37 @@ Template.registerHelper "pathForSEO", (path, params) ->
 
 
 ###
+# Methods for the reaction permissions
+# https://github.com/ongoworks/reaction#rolespermissions-system
+###
+
+# Template.registerHelper "hasShopPermission", (permissions) ->
+#   return ReactionCore.hasPermission(permissions)
+
+# Template.registerHelper "hasOwnerAccess", ->
+#   return ReactionCore.hasOwnerAccess()
+
+# Template.registerHelper "hasDashboardAccess", ->
+#   return ReactionCore.hasDashboardAccess()
+
+# Template.registerHelper "activeRouteClass", ->
+#   args = Array::slice.call(arguments, 0)
+#   args.pop()
+#   active = _.any(args, (name) ->
+#     location.pathname is Router.path(name)
+#   )
+#   return active and "active"
+
+###
+# 	Busca algún nombre de tienda 
+# @return [String] Nombre de la tienda
+# @todo Dar una mejor descripcion. Describir de donde viene la información.
+###
+Template.registerHelper "siteName", ->
+	return Shops.findOne()?.name
+
+
+###
 # ---TODO---
 # methods to return cart calculated values
 # cartCount, cartSubTotal, cartShipping, cartTaxes, cartTotal

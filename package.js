@@ -444,8 +444,8 @@ Package.onUse(function(api) {
 	"client/templates/products/productDetail/variants/variantList/variantList.html",
 	"client/templates/products/productDetail/variants/variantList/variantList.coffee",
 
-	// "client/templates/products/productDetail/variants/variantForm/variantForm.html",
-	// "client/templates/products/productDetail/variants/variantForm/variantForm.coffee",
+	"client/templates/products/productDetail/variants/variantForm/variantForm.html",
+	"client/templates/products/productDetail/variants/variantForm/variantForm.coffee",
 
 	// "client/templates/products/productDetail/variants/variantForm/childVariant/childVariant.html",
 	// "client/templates/products/productDetail/variants/variantForm/childVariant/childVariant.coffee",
